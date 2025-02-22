@@ -44,14 +44,16 @@
 
         <!-- Chart Selection Tabs -->
         <div class="chart-tabs">
-            <button onclick="showChart('line')">📈 Line Chart</button>
-            <button onclick="showChart('bar')">📊 Bar Chart</button>
-            <button onclick="showChart('pie')">🥧 Pie Chart</button>
+            <button onclick="showChart('Daily')">📈 Daily</button>
+            <button onclick="showChart('Weekly')">📊 Weekly</button>
+            <button onclick="showChart('Monthly')">🥧 Monthly</button>
         </div>
 
         <!-- Chart Display Sections -->
         <div id="chart-container">
-            <canvas id="expenseChart" width="400" height="200"></canvas>
+            <canvas id="expenseChartDaily" width="400" height="200"></canvas>
+            <canvas id="expenseChartWeekly" width="400" height="200" style="display: none;"></canvas>
+            <canvas id="expenseChartMonthly" width="400" height="200" style="display: none;"></canvas>
         </div>
     </div>
     <script src="script.js"></script>
