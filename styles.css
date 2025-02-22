@@ -1,75 +1,69 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    background: #5d93e4;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
-}
-
-.container {
-    max-width: 420px;
-    margin: 50px auto;
-    padding: 25px;
-    background: #f2f2f2;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-}
-
-h2 {
-    color: #47627d;
-    font-size: 22px;
-    margin-bottom: 15px;
-}
-
-.form input, select {
-    width: 95%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-button {
-    padding: 10px 14px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #2980b9;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
-    background: #ecf0f1;
-    margin: 8px 0;
-    padding: 12px;
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  .input-section {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.delete-btn {
-    background: #e74c3c;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .input-section label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .input-section input[type="number"], .input-section input[type="date"] {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .input-section button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 6px 10px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-.delete-btn:hover {
-    background: #c0392b;
-}
+  }
+  
+  .expenses-list {
+    margin: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  tfoot td {
+    font-weight: bold;
+  }
+  
+  .delete-btn {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
