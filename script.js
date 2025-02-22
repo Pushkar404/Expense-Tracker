@@ -1,5 +1,5 @@
 let expenses = [];
-let goals = { Daily: 0, Weekly: 0, Monthly: 0, Yearly: 0 };
+let Limits = { Daily: 0, Weekly: 0, Monthly: 0, Yearly: 0 };
 let charts = {}; // Store Chart.js instances
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -26,29 +26,29 @@ function addExpense() {
     updateUI();
 }
 
-function setGoal() {
-    let amount = parseFloat(document.getElementById("goal-amount").value);
-    let period = document.getElementById("goal-period").value;
+function setLimit() {
+    let amount = parseFloat(document.getElementById("Limit-amount").value);
+    let period = document.getElementById("Limit-period").value;
     
     if (isNaN(amount) || amount <= 0) {
-        alert("Please enter a valid goal amount!");
+        alert("Please enter a valid Limit amount!");
         return;
     }
 
-    goals[period] = amount;
-    updateGoalsUI();
+    Limits[period] = amount;
+    updateLimitsUI();
 }
 
-function updateGoalsUI() {
-    let goalList = document.getElementById("goal-list");
-    goalList.innerHTML = "";
+function updateLimitsUI() {
+    let LimitList = document.getElementById("Limit-list");
+    LimitList.innerHTML = "";
 
-    for (let period in goals) {
-        let goalValue = goals[period];
-        if (goalValue > 0) {
+    for (let period in Limits) {
+        let LimitValue = Limits[period];
+        if (LimitValue > 0) {
             let li = document.createElement("li");
-            li.innerHTML = `<strong>${period}:</strong> ₹${goalValue} <span id="${period}-status" class="green">✔ Within Limit</span>`;
-            goalList.appendChild(li);
+            li.innerHTML = `<strong>${period}:</strong> ₹${LimitValue} <span id="${period}-status" class="green">✔ Within Limit</span>`;
+            LimitList.appendChild(li);
         }
     }
 }
@@ -69,18 +69,18 @@ function updateStatus() {
         Yearly: getExpenseTotal("Yearly")
     };
 
-    for (let period in goals) {
-        let goalValue = goals[period];
+    for (let period in Limits) {
+        let LimitValue = Limits[period];
         let total = periodTotals[period];
         let statusEl = document.getElementById(`${period}-status`);
 
         if (!statusEl) continue;
 
-        if (goalValue > 0) {
-            if (total > goalValue) {
+        if (LimitValue > 0) {
+            if (total > LimitValue) {
                 statusEl.innerText = "❌ Over Limit!";
                 statusEl.className = "red";
-            } else if (total > goalValue * 0.6) {
+            } else if (total > LimitValue * 0.6) {
                 statusEl.innerText = "⚠ Warning: 60%+ Spent!";
                 statusEl.className = "yellow";
             } else {
@@ -138,7 +138,7 @@ function createCharts() {
 function updateCharts() {
     let dailyExpenses = getExpenseTotal("Daily");
     let weeklyExpenses = getExpenseTotal("Weekly");
-    
+    let monthlyExpenses = getExpenseTotal("Monthly");
     // Update Daily Chart
     charts.daily.data.labels = ["Today"];
     charts.daily.data.datasets[0].data = [dailyExpenses];
@@ -179,4 +179,3 @@ function showChart(type) {
 
     console.log("Chart displayed:", type);
 }
-
