@@ -141,16 +141,30 @@ function updateCharts() {
     charts.weekly.data.labels = ["This Week"];
     charts.weekly.data.datasets[0].data = [weeklyExpenses];
     charts.weekly.update();
+//START
+    let categoryTotals = expenses.reduce((acc, exp) => {
+    acc[exp.category] = (acc[exp.category] || 0) + exp.amount;
+    return acc;
+}, {});
 
-    charts.monthly.data.labels = expenses.map(e => e.category);
-    charts.monthly.data.datasets[0].data = expenses.map(e => e.amount);
+    charts.monthly.data.labels = Object.keys(categoryTotals);
+    charts.monthly.data.datasets[0].data = Object.values(categoryTotals);
     charts.monthly.update();
+
+//END
 }
 
 function showChart(type) {
     document.getElementById("expenseChartDaily").style.display = "none";
     document.getElementById("expenseChartWeekly").style.display = "none";
     document.getElementById("expenseChartMonthly").style.display = "none";
-    document.getElementById(`expenseChart${type}`).style.display = "block";
+
+    if (type === "pie") {
+        document.getElementById("expenseChartMonthly").style.display = "block";
+    } else if (type === "line") {
+        document.getElementById("expenseChartDaily").style.display = "block";
+    } else if (type === "bar") {
+        document.getElementById("expenseChartWeekly").style.display = "block";
+    }
 }
 
