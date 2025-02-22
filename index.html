@@ -37,8 +37,29 @@
         <button onclick="setGoal()">Set Goal</button>
 
         <ul id="expense-list"></ul>
-        <canvas id="expenseChart"></canvas>
+        <canvas id="expenseChart" width="400" height="200"></canvas>
     </div>
     <script src="script.js"></script>
+    <script>
+        const ctx = document.getElementById('expenseChart').getContext('2d');
+        const expenseChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Expenses',
+                    data: [],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
