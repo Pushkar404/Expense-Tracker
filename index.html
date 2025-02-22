@@ -42,15 +42,17 @@
 
         <ul id="expense-list"></ul>
 
-        <!-- Charts for different periods -->
-        <h3>Daily Expenses</h3>
-        <canvas id="expenseChartDaily" width="400" height="200"></canvas>
+        <!-- Chart Selection Tabs -->
+        <div class="chart-tabs">
+            <button onclick="showChart('line')">📈 Line Chart</button>
+            <button onclick="showChart('bar')">📊 Bar Chart</button>
+            <button onclick="showChart('pie')">🥧 Pie Chart</button>
+        </div>
 
-        <h3>Weekly Expenses</h3>
-        <canvas id="expenseChartWeekly" width="400" height="200"></canvas>
-
-        <h3>Monthly Expenses</h3>
-        <canvas id="expenseChartMonthly" width="400" height="200"></canvas>
+        <!-- Chart Display Sections -->
+        <div id="chart-container">
+            <canvas id="expenseChart" width="400" height="200"></canvas>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
