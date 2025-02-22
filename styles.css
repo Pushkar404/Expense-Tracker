@@ -1,38 +1,48 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
-    background: #f4f4f4;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 20px;
 }
 
 .container {
-    max-width: 400px;
+    max-width: 420px;
     margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    color: #333;
+    color: #2c3e50;
+    font-size: 22px;
+    margin-bottom: 15px;
 }
 
-.form input {
-    width: 90%;
-    padding: 8px;
-    margin: 5px;
+.form input, select {
+    width: 95%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 button {
-    padding: 8px 12px;
-    background: green;
+    padding: 10px 14px;
+    background: #3498db;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: darkgreen;
+    background: #2980b9;
 }
 
 ul {
@@ -41,17 +51,25 @@ ul {
 }
 
 ul li {
-    background: #eee;
-    margin: 5px;
-    padding: 10px;
+    background: #ecf0f1;
+    margin: 8px 0;
+    padding: 12px;
     display: flex;
     justify-content: space-between;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .delete-btn {
-    background: red;
+    background: #e74c3c;
     color: white;
     border: none;
-    padding: 5px;
+    padding: 6px 10px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
 }
