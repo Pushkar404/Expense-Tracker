@@ -5,21 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
         <h2>💰 Expense Tracker</h2>
         <h3>Balance: ₹<span id="balance">0</span></h3>
+        <h3>Goal: ₹<span id="goal">0</span> (<span id="goal-period-text">-</span>)</h3>
+        <h3>Status: <span id="status" class="green">✔ Within Limit</span></h3>
 
         <div class="form">
             <input type="text" id="desc" placeholder="Enter description">
             <input type="number" id="amount" placeholder="Enter amount">
+            <input type="date" id="date">
+            <select id="category">
+                <option value="Essentials">Essentials</option>
+                <option value="Casual">Casual</option>
+                <option value="Custom">Custom</option>
+            </select>
             <button onclick="addExpense()">Add Expense</button>
         </div>
 
-        <ul id="expense-list"></ul>
-    </div>
+        <h3>Set Spending Goal</h3>
+        <input type="number" id="goal-amount" placeholder="Enter goal amount">
+        <select id="goal-period">
+            <option value="Daily">Per Day</option>
+            <option value="Weekly">Per Week</option>
+            <option value="Monthly">Per Month</option>
+            <option value="Yearly">Per Year</option>
+        </select>
+        <button onclick="setGoal()">Set Goal</button>
 
+        <ul id="expense-list"></ul>
+        <canvas id="expenseChart"></canvas>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
