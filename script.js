@@ -161,6 +161,8 @@ function updateCharts() {
 }
 
 function showChart(type) {
+    console.log("Switching to:", type); // Debugging log
+
     document.getElementById("expenseChartDaily").style.display = "none";
     document.getElementById("expenseChartWeekly").style.display = "none";
     document.getElementById("expenseChartMonthly").style.display = "none";
@@ -172,4 +174,7 @@ function showChart(type) {
     } else if (type === "Monthly") {
         document.getElementById("expenseChartMonthly").style.display = "block";
     }
+
+    console.log("Chart displayed:", type);
 }
+
