@@ -1,14 +1,14 @@
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #191970; /* Midnight Blue */
+    color: #ffffff; /* White text for contrast */
     line-height: 1.6;
 }
 
 h1, h2 {
     text-align: center;
-    color: #4CAF50;
+    color: #ffa500; /* Orange for headings to stand out */
     margin: 20px 0;
 }
 
@@ -26,9 +26,9 @@ h2 {
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: #fff;
+    background-color: #1e1e90; /* Slightly lighter blue for contrast */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin: 20px auto;
     max-width: 800px;
 }
@@ -36,29 +36,31 @@ h2 {
 .input-section label {
     font-weight: bold;
     margin-right: 10px;
-    color: #555;
+    color: #ffa500; /* Orange for labels */
 }
 
 .input-section input[type="number"],
 .input-section input[type="date"] {
     padding: 8px;
     margin-right: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #444;
     border-radius: 4px;
     font-size: 1rem;
+    background-color: #2a2a99; /* Darker blue for inputs */
+    color: #ffffff; /* White text */
     transition: border-color 0.3s ease;
 }
 
 .input-section input[type="number"]:focus,
 .input-section input[type="date"]:focus {
-    border-color: #4CAF50;
+    border-color: #ffa500; /* Orange focus border */
     outline: none;
 }
 
 .input-section button {
     padding: 8px 16px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ffa500; /* Orange for buttons */
+    color: #191970; /* Midnight Blue text */
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -67,15 +69,15 @@ h2 {
 }
 
 .input-section button:hover {
-    background-color: #45a049;
+    background-color: #ff8c00; /* Darker orange on hover */
 }
 
 .expenses-list {
     margin: 20px auto;
     max-width: 800px;
-    background-color: #fff;
+    background-color: #1e1e90; /* Slightly lighter blue for contrast */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     padding: 20px;
 }
 
@@ -86,33 +88,33 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid #444; /* Darker borders for contrast */
     padding: 12px;
     text-align: left;
 }
 
 th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ffa500; /* Orange for table headers */
+    color: #191970; /* Midnight Blue text */
     font-weight: bold;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #2a2a99; /* Alternate row color */
 }
 
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: #3a3aa9; /* Hover effect for rows */
 }
 
 tfoot td {
     font-weight: bold;
-    background-color: #f9f9f9;
+    background-color: #1e1e90; /* Matching the input section */
 }
 
 .delete-btn {
     padding: 8px 16px;
-    background-color: #f44336;
+    background-color: #ff4500; /* Red-Orange for delete button */
     color: white;
     border: none;
     border-radius: 4px;
@@ -122,5 +124,5 @@ tfoot td {
 }
 
 .delete-btn:hover {
-    background-color: #e53935;
+    background-color: #e63900; /* Darker red-orange on hover */
 }
