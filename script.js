@@ -1,5 +1,5 @@
 let expenses = [];
-let goals = {};
+let goals = { Daily: 0, Weekly: 0, Monthly: 0, Yearly: 0 };
 
 // Function to Add Expense
 function addExpense() {
@@ -74,7 +74,7 @@ function updateGoalsUI() {
         let goalValue = goals[period];
         if (goalValue > 0) {
             let li = document.createElement("li");
-            li.innerText = `${period}: ₹${goalValue}`;
+            li.innerHTML = `<strong>${period}:</strong> ₹${goalValue} <span id="${period}-status" class="green">✔ Within Limit</span>`;
             goalList.appendChild(li);
         }
     }
@@ -84,29 +84,66 @@ function updateGoalsUI() {
 function updateUI() {
     let totalExpense = expenses.reduce((sum, exp) => sum + exp.amount, 0);
     document.getElementById("balance").innerText = totalExpense;
-    updateStatus(totalExpense);
+    updateStatus();
     renderExpenses();
 }
 
 // Function to Update Status Based on Goals
-function updateStatus(totalExpense) {
-    let statusEl = document.getElementById("status");
-    let warning = "✔ Within Limit";
-    let statusClass = "green";
+function updateStatus() {
+    let periodTotals = {
+        Daily: getExpenseTotal("Daily"),
+        Weekly: getExpenseTotal("Weekly"),
+        Monthly: getExpenseTotal("Monthly"),
+        Yearly: getExpenseTotal("Yearly")
+    };
 
     for (let period in goals) {
         let goalValue = goals[period];
-        if (goalValue > 0 && totalExpense > goalValue) {
-            warning = "❌ Over Limit!";
-            statusClass = "red";
-        } else if (goalValue > 0 && totalExpense > goalValue * 0.6) {
-            warning = "⚠ Warning: 60%+ Spent!";
-            statusClass = "yellow";
+        let total = periodTotals[period];
+        let statusEl = document.getElementById(`${period}-status`);
+
+        if (!statusEl) continue; // Skip if status element is missing
+
+        if (goalValue > 0) {
+            if (total > goalValue) {
+                statusEl.innerText = "❌ Over Limit!";
+                statusEl.className = "red";
+            } else if (total > goalValue * 0.6) {
+                statusEl.innerText = "⚠ Warning: 60%+ Spent!";
+                statusEl.className = "yellow";
+            } else {
+                statusEl.innerText = "✔ Within Limit";
+                statusEl.className = "green";
+            }
         }
     }
+}
 
-    statusEl.innerText = warning;
-    statusEl.className = statusClass;
+// Function to Calculate Expense Total for a Given Period
+function getExpenseTotal(period) {
+    const now = new Date();
+    return expenses
+        .filter(exp => isWithinPeriod(exp.date, period))
+        .reduce((sum, exp) => sum + exp.amount, 0);
+}
+
+// Function to Check if Expense Falls Within a Period
+function isWithinPeriod(date, period) {
+    const now = new Date();
+    const expenseDate = new Date(date);
+
+    switch (period) {
+        case "Daily":
+            return expenseDate.toDateString() === now.toDateString();
+        case "Weekly":
+            return (now - expenseDate) / (1000 * 60 * 60 * 24) < 7;
+        case "Monthly":
+            return expenseDate.getMonth() === now.getMonth() && expenseDate.getFullYear() === now.getFullYear();
+        case "Yearly":
+            return expenseDate.getFullYear() === now.getFullYear();
+        default:
+            return false;
+    }
 }
 
 // Function to Render Expenses in a List
