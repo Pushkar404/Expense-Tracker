@@ -1,69 +1,126 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
-  }
-  
-  h1, h2 {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2 {
     text-align: center;
-  }
-  
-  .input-section {
+    color: #4CAF50;
+    margin: 20px 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.input-section {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-  }
-  
-  .input-section label {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.input-section label {
     font-weight: bold;
     margin-right: 10px;
-  }
-  
-  .input-section input[type="number"], .input-section input[type="date"] {
-    padding: 5px;
+    color: #555;
+}
+
+.input-section input[type="number"],
+.input-section input[type="date"] {
+    padding: 8px;
     margin-right: 10px;
-  }
-  
-  .input-section button {
-    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.input-section input[type="number"]:focus,
+.input-section input[type="date"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.input-section button {
+    padding: 8px 16px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .expenses-list {
-    margin: 20px;
-  }
-  
-  table {
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.input-section button:hover {
+    background-color: #45a049;
+}
+
+.expenses-list {
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  th, td {
+    margin-top: 20px;
+}
+
+th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: left;
-  }
-  
-  th {
+}
+
+th {
     background-color: #4CAF50;
     color: white;
-  }
-  
-  tfoot td {
     font-weight: bold;
-  }
-  
-  .delete-btn {
-    padding: 5px 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+tfoot td {
+    font-weight: bold;
+    background-color: #f9f9f9;
+}
+
+.delete-btn {
+    padding: 8px 16px;
     background-color: #f44336;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #e53935;
+}
