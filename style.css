@@ -1,133 +1,71 @@
+this css is ugly. fix it. beuatify it.
+
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #191970; /* Midnight Blue */
-    color: #E0E0E0; /* Light Gray */
-    line-height: 1.6;
-}
-
-h1, h2 {
+  }
+  
+  h1, h2 {
     text-align: center;
-    color: #FFD700; /* Gold */
-    margin: 20px 0;
-}
-
-h1 {
-    font-size: 2.5rem;
-}
-
-h2 {
-    font-size: 2rem;
-}
-
-.input-section {
+  }
+  
+  .input-section {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    background-color: #1E1E2E; /* Dark Grayish Blue */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    margin: 20px auto;
-    max-width: 800px;
-}
-
-.input-section label {
+    padding: 10px;
+  }
+  
+  .input-section label {
     font-weight: bold;
     margin-right: 10px;
-    color: #B0B0B0; /* Muted Light Gray */
-}
-
-.input-section input[type="number"],
-.input-section input[type="date"] {
-    padding: 8px;
+  }
+  
+  .input-section input[type="number"], .input-section input[type="date"] {
+    padding: 5px;
     margin-right: 10px;
-    border: 1px solid #44475A; /* Soft Dark Blue */
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: #282A36; /* Dracula Dark Gray */
-    color: #FFFFFF; /* White */
-    transition: border-color 0.3s ease;
-}
-
-.input-section input[type="number"]:focus,
-.input-section input[type="date"]:focus {
-    border-color: #50FA7B; /* Neon Green */
-    outline: none;
-}
-
-.input-section button {
-    padding: 8px 16px;
-    background-color: #008080; /* Teal */
-    color: #FFFFFF; /* White */
+  }
+  
+  .input-section button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-.input-section button:hover {
-    background-color: #005F5F; /* Darker Teal */
-}
-
-.expenses-list {
-    margin: 20px auto;
-    max-width: 800px;
-    background-color: #222244; /* Deep Navy Blue */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-}
-
-table {
+  }
+  
+  .expenses-list {
+    margin: 20px;
+  }
+  
+  table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    border: 1px solid #55557F; /* Slate Blue */
-    padding: 12px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: left;
-}
-
-th {
-    background-color: #333366; /* Deep Blue */
-    color: #F0E68C; /* Khaki */
+  }
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  tfoot td {
     font-weight: bold;
-}
-
-tr:nth-child(even) {
-    background-color: #29294D; /* Muted Navy */
-}
-
-tr:nth-child(odd) {
-    background-color: #1F1F3D; /* Darker Navy */
-}
-
-tr:hover {
-    background-color: #3D3D6B; /* Soft Blue */
-}
-
-tfoot td {
-    font-weight: bold;
-    background-color: #1E1E2E; /* Dark Grayish Blue */
-    color: #FFA500; /* Orange */
-}
-
-.delete-btn {
-    padding: 8px 16px;
-    background-color: #FF7F50; /* Coral */
-    color: #FFFFFF; /* White */
+  }
+  
+  .delete-btn {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-.delete-btn:hover {
-    background-color: #FF4500; /* Darker Coral */
-}
+  }
