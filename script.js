@@ -23,6 +23,7 @@ const monthlyChart = new Chart(ctxMonthly, {
     options: { scales: { y: { beginAtZero: true } } }
 });
 
+// Function to add expense
 function addExpense() {
     const desc = document.getElementById("desc").value;
     const amount = parseFloat(document.getElementById("amount").value);
@@ -43,18 +44,36 @@ function addExpense() {
     updateUI();
 }
 
+// **Enter Key Navigation Logic**
 document.getElementById("desc").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") addExpense();
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("amount").focus();
+    }
 });
 
 document.getElementById("amount").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") addExpense();
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("date").focus();
+    }
 });
 
 document.getElementById("date").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") addExpense();
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("category").focus();
+    }
 });
 
+document.getElementById("category").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        addExpense();
+    }
+});
+
+// Function to set goal independently
 function setGoal() {
     goalAmount = parseFloat(document.getElementById("goal-amount").value);
     goalPeriod = document.getElementById("goal-period").value;
@@ -63,6 +82,7 @@ function setGoal() {
     updateUI();
 }
 
+// Function to update UI
 function updateUI() {
     let totalExpense = expenses.reduce((sum, exp) => sum + exp.amount, 0);
     document.getElementById("balance").innerText = totalExpense;
@@ -71,6 +91,7 @@ function updateUI() {
     renderExpenses();
 }
 
+// Function to update charts
 function updateCharts() {
     updateChart(dailyChart, "Daily");
     updateChart(weeklyChart, "Weekly");
@@ -84,6 +105,7 @@ function updateChart(chart, period) {
     chart.update();
 }
 
+// Function to check if expense falls within a period
 function isWithinPeriod(date, period) {
     const now = new Date();
     const expenseDate = new Date(date);
@@ -95,6 +117,7 @@ function isWithinPeriod(date, period) {
     }
 }
 
+// Function to update status based on goal
 function updateStatus(totalExpense) {
     let statusEl = document.getElementById("status");
     if (goalAmount > 0) {
@@ -111,6 +134,7 @@ function updateStatus(totalExpense) {
     }
 }
 
+// Function to render expenses in a list
 function renderExpenses() {
     const list = document.getElementById("expense-list");
     list.innerHTML = "";
