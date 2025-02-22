@@ -150,14 +150,16 @@ function updateCharts() {
     charts.weekly.update();
 
     // Update Monthly Chart (Category-wise)
-    let categoryTotals = expenses.reduce((acc, exp) => {
-        acc[exp.category] = (acc[exp.category] || 0) + exp.amount;
-        return acc;
-    }, {});
+    let monthlyData = expenses.reduce((acc, exp) => {
+    let date = new Date(exp.date).toLocaleDateString("en-GB"); // Format: DD/MM/YYYY
+    acc[date] = (acc[date] || 0) + exp.amount;
+    return acc;
+}, {});
 
-    charts.monthly.data.labels = Object.keys(categoryTotals);
-    charts.monthly.data.datasets[0].data = Object.values(categoryTotals);
+    charts.monthly.data.labels = Object.keys(monthlyData); // Dates on X-axis
+    charts.monthly.data.datasets[0].data = Object.values(monthlyData); // Amounts on Y-axis
     charts.monthly.update();
+
 }
 
 function showChart(type) {
