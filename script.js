@@ -1,7 +1,11 @@
 let expenses = [];
 let goals = { Daily: 0, Weekly: 0, Monthly: 0, Yearly: 0 };
+let charts = {}; // Store Chart.js instances
 
-// Function to Add Expense
+document.addEventListener("DOMContentLoaded", function () {
+    createCharts();
+});
+
 function addExpense() {
     const desc = document.getElementById("desc").value;
     const amount = parseFloat(document.getElementById("amount").value);
@@ -22,36 +26,6 @@ function addExpense() {
     updateUI();
 }
 
-// Enter Key Navigation
-document.getElementById("desc").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        document.getElementById("amount").focus();
-    }
-});
-
-document.getElementById("amount").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        document.getElementById("date").focus();
-    }
-});
-
-document.getElementById("date").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        document.getElementById("category").focus();
-    }
-});
-
-document.getElementById("category").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        addExpense();
-    }
-});
-
-// Function to Set Multiple Goals
 function setGoal() {
     let amount = parseFloat(document.getElementById("goal-amount").value);
     let period = document.getElementById("goal-period").value;
@@ -61,14 +35,13 @@ function setGoal() {
         return;
     }
 
-    goals[period] = amount; // Save goal for selected period
+    goals[period] = amount;
     updateGoalsUI();
 }
 
-// Function to Display All Goals
 function updateGoalsUI() {
     let goalList = document.getElementById("goal-list");
-    goalList.innerHTML = ""; // Clear previous list
+    goalList.innerHTML = "";
 
     for (let period in goals) {
         let goalValue = goals[period];
@@ -80,15 +53,14 @@ function updateGoalsUI() {
     }
 }
 
-// Function to Update UI
 function updateUI() {
     let totalExpense = expenses.reduce((sum, exp) => sum + exp.amount, 0);
     document.getElementById("balance").innerText = totalExpense;
     updateStatus();
     renderExpenses();
+    updateCharts();
 }
 
-// Function to Update Status Based on Goals
 function updateStatus() {
     let periodTotals = {
         Daily: getExpenseTotal("Daily"),
@@ -102,7 +74,7 @@ function updateStatus() {
         let total = periodTotals[period];
         let statusEl = document.getElementById(`${period}-status`);
 
-        if (!statusEl) continue; // Skip if status element is missing
+        if (!statusEl) continue;
 
         if (goalValue > 0) {
             if (total > goalValue) {
@@ -119,34 +91,24 @@ function updateStatus() {
     }
 }
 
-// Function to Calculate Expense Total for a Given Period
 function getExpenseTotal(period) {
     const now = new Date();
-    return expenses
-        .filter(exp => isWithinPeriod(exp.date, period))
-        .reduce((sum, exp) => sum + exp.amount, 0);
+    return expenses.filter(exp => isWithinPeriod(exp.date, period)).reduce((sum, exp) => sum + exp.amount, 0);
 }
 
-// Function to Check if Expense Falls Within a Period
 function isWithinPeriod(date, period) {
     const now = new Date();
     const expenseDate = new Date(date);
 
     switch (period) {
-        case "Daily":
-            return expenseDate.toDateString() === now.toDateString();
-        case "Weekly":
-            return (now - expenseDate) / (1000 * 60 * 60 * 24) < 7;
-        case "Monthly":
-            return expenseDate.getMonth() === now.getMonth() && expenseDate.getFullYear() === now.getFullYear();
-        case "Yearly":
-            return expenseDate.getFullYear() === now.getFullYear();
-        default:
-            return false;
+        case "Daily": return expenseDate.toDateString() === now.toDateString();
+        case "Weekly": return (now - expenseDate) / (1000 * 60 * 60 * 24) < 7;
+        case "Monthly": return expenseDate.getMonth() === now.getMonth() && expenseDate.getFullYear() === now.getFullYear();
+        case "Yearly": return expenseDate.getFullYear() === now.getFullYear();
+        default: return false;
     }
 }
 
-// Function to Render Expenses in a List
 function renderExpenses() {
     const list = document.getElementById("expense-list");
     list.innerHTML = "";
@@ -156,3 +118,39 @@ function renderExpenses() {
         list.appendChild(li);
     });
 }
+
+function createCharts() {
+    let ctxDaily = document.getElementById("expenseChartDaily").getContext("2d");
+    let ctxWeekly = document.getElementById("expenseChartWeekly").getContext("2d");
+    let ctxMonthly = document.getElementById("expenseChartMonthly").getContext("2d");
+    
+    charts.daily = new Chart(ctxDaily, { type: "line", data: { labels: [], datasets: [{ label: "Daily Expenses", data: [], backgroundColor: "blue" }] } });
+    charts.weekly = new Chart(ctxWeekly, { type: "bar", data: { labels: [], datasets: [{ label: "Weekly Expenses", data: [], backgroundColor: "green" }] } });
+    charts.monthly = new Chart(ctxMonthly, { type: "pie", data: { labels: [], datasets: [{ data: [], backgroundColor: ["red", "blue", "yellow"] }] } });
+}
+
+function updateCharts() {
+    let dailyExpenses = getExpenseTotal("Daily");
+    let weeklyExpenses = getExpenseTotal("Weekly");
+    let monthlyExpenses = getExpenseTotal("Monthly");
+
+    charts.daily.data.labels = ["Today"];
+    charts.daily.data.datasets[0].data = [dailyExpenses];
+    charts.daily.update();
+
+    charts.weekly.data.labels = ["This Week"];
+    charts.weekly.data.datasets[0].data = [weeklyExpenses];
+    charts.weekly.update();
+
+    charts.monthly.data.labels = expenses.map(e => e.category);
+    charts.monthly.data.datasets[0].data = expenses.map(e => e.amount);
+    charts.monthly.update();
+}
+
+function showChart(type) {
+    document.getElementById("expenseChartDaily").style.display = "none";
+    document.getElementById("expenseChartWeekly").style.display = "none";
+    document.getElementById("expenseChartMonthly").style.display = "none";
+    document.getElementById(`expenseChart${type}`).style.display = "block";
+}
+
