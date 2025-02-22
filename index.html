@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h2>💰 Expense Tracker</h2>
-        
+
         <!-- Independent Spending Goal Section -->
         <h3>Set Spending Goal</h3>
         <input type="number" id="goal-amount" placeholder="Enter goal amount">
@@ -22,7 +22,10 @@
         </select>
         <button onclick="setGoal()">Set Goal</button>
 
-        <h3>Goal: ₹<span id="goal">0</span> (<span id="goal-period-text">-</span>)</h3>
+        <!-- Goals List -->
+        <h3>Goals:</h3>
+        <ul id="goal-list"></ul>
+
         <h3>Status: <span id="status" class="green">✔ Within Limit</span></h3>
 
         <!-- Expense Entry Form -->
