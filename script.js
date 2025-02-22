@@ -126,32 +126,38 @@ function createCharts() {
     
     charts.daily = new Chart(ctxDaily, { type: "line", data: { labels: [], datasets: [{ label: "Daily Expenses", data: [], backgroundColor: "blue" }] } });
     charts.weekly = new Chart(ctxWeekly, { type: "bar", data: { labels: [], datasets: [{ label: "Weekly Expenses", data: [], backgroundColor: "green" }] } });
-    charts.monthly = new Chart(ctxMonthly, { type: "pie", data: { labels: [], datasets: [{ data: [], backgroundColor: ["red", "blue", "yellow"] }] } });
+    charts.monthly = new Chart(ctxMonthly, { 
+        type: "pie", 
+        data: { 
+            labels: [], 
+            datasets: [{ data: [], backgroundColor: ["red", "blue", "yellow", "purple", "orange"] }] 
+        } 
+    });
 }
 
 function updateCharts() {
     let dailyExpenses = getExpenseTotal("Daily");
     let weeklyExpenses = getExpenseTotal("Weekly");
-    let monthlyExpenses = getExpenseTotal("Monthly");
-
+    
+    // Update Daily Chart
     charts.daily.data.labels = ["Today"];
     charts.daily.data.datasets[0].data = [dailyExpenses];
     charts.daily.update();
 
+    // Update Weekly Chart
     charts.weekly.data.labels = ["This Week"];
     charts.weekly.data.datasets[0].data = [weeklyExpenses];
     charts.weekly.update();
-//START
+
+    // Update Monthly Chart (Category-wise)
     let categoryTotals = expenses.reduce((acc, exp) => {
-    acc[exp.category] = (acc[exp.category] || 0) + exp.amount;
-    return acc;
-}, {});
+        acc[exp.category] = (acc[exp.category] || 0) + exp.amount;
+        return acc;
+    }, {});
 
     charts.monthly.data.labels = Object.keys(categoryTotals);
     charts.monthly.data.datasets[0].data = Object.values(categoryTotals);
     charts.monthly.update();
-
-//END
 }
 
 function showChart(type) {
@@ -159,12 +165,11 @@ function showChart(type) {
     document.getElementById("expenseChartWeekly").style.display = "none";
     document.getElementById("expenseChartMonthly").style.display = "none";
 
-    if (type === "pie") {
-        document.getElementById("expenseChartMonthly").style.display = "block";
-    } else if (type === "line") {
+    if (type === "Daily") {
         document.getElementById("expenseChartDaily").style.display = "block";
-    } else if (type === "bar") {
+    } else if (type === "Weekly") {
         document.getElementById("expenseChartWeekly").style.display = "block";
+    } else if (type === "Monthly") {
+        document.getElementById("expenseChartMonthly").style.display = "block";
     }
 }
-
