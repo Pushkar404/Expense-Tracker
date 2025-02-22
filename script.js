@@ -1,10 +1,17 @@
 let expenses = [];
-let goalAmount = 0;
-let goalPeriod = "-";
+let goals = {
+    Daily: 0,
+    Weekly: 0,
+    Monthly: 0,
+    Yearly: 0
+};
+
+// Chart Elements
 const ctxDaily = document.getElementById("expenseChartDaily").getContext("2d");
 const ctxWeekly = document.getElementById("expenseChartWeekly").getContext("2d");
 const ctxMonthly = document.getElementById("expenseChartMonthly").getContext("2d");
 
+// Charts
 const dailyChart = new Chart(ctxDaily, {
     type: "bar",
     data: { labels: [], datasets: [{ label: "Daily Expenses", data: [], backgroundColor: "rgba(255, 99, 132, 0.2)", borderColor: "rgba(255, 99, 132, 1)", borderWidth: 1 }] },
@@ -23,7 +30,7 @@ const monthlyChart = new Chart(ctxMonthly, {
     options: { scales: { y: { beginAtZero: true } } }
 });
 
-// Function to add expense
+// Function to Add Expense
 function addExpense() {
     const desc = document.getElementById("desc").value;
     const amount = parseFloat(document.getElementById("amount").value);
@@ -44,7 +51,7 @@ function addExpense() {
     updateUI();
 }
 
-// **Enter Key Navigation Logic**
+// **Enter Key Navigation**
 document.getElementById("desc").addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -73,16 +80,36 @@ document.getElementById("category").addEventListener("keypress", function(event)
     }
 });
 
-// Function to set goal independently
+// Function to Set Multiple Goals
 function setGoal() {
-    goalAmount = parseFloat(document.getElementById("goal-amount").value);
-    goalPeriod = document.getElementById("goal-period").value;
-    document.getElementById("goal").innerText = goalAmount;
-    document.getElementById("goal-period-text").innerText = goalPeriod;
-    updateUI();
+    let amount = parseFloat(document.getElementById("goal-amount").value);
+    let period = document.getElementById("goal-period").value;
+    
+    if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid goal amount!");
+        return;
+    }
+
+    goals[period] = amount; // Save goal for selected period
+    updateGoalsUI();
 }
 
-// Function to update UI
+// Function to Display All Goals
+function updateGoalsUI() {
+    let goalList = document.getElementById("goal-list");
+    goalList.innerHTML = ""; // Clear previous list
+
+    for (let period in goals) {
+        let goalValue = goals[period];
+        if (goalValue > 0) {
+            let li = document.createElement("li");
+            li.innerText = `${period}: ₹${goalValue}`;
+            goalList.appendChild(li);
+        }
+    }
+}
+
+// Function to Update UI
 function updateUI() {
     let totalExpense = expenses.reduce((sum, exp) => sum + exp.amount, 0);
     document.getElementById("balance").innerText = totalExpense;
@@ -91,7 +118,7 @@ function updateUI() {
     renderExpenses();
 }
 
-// Function to update charts
+// Function to Update Charts
 function updateCharts() {
     updateChart(dailyChart, "Daily");
     updateChart(weeklyChart, "Weekly");
@@ -105,7 +132,7 @@ function updateChart(chart, period) {
     chart.update();
 }
 
-// Function to check if expense falls within a period
+// Function to Check if Expense Falls Within a Period
 function isWithinPeriod(date, period) {
     const now = new Date();
     const expenseDate = new Date(date);
@@ -117,24 +144,28 @@ function isWithinPeriod(date, period) {
     }
 }
 
-// Function to update status based on goal
+// Function to Update Status Based on Goals
 function updateStatus(totalExpense) {
     let statusEl = document.getElementById("status");
-    if (goalAmount > 0) {
-        if (totalExpense > goalAmount) {
-            statusEl.innerText = "❌ Over Limit!";
-            statusEl.className = "red";
-        } else if (totalExpense > goalAmount * 0.6) {
-            statusEl.innerText = "⚠ Warning: 60%+ Spent!";
-            statusEl.className = "yellow";
-        } else {
-            statusEl.innerText = "✔ Within Limit";
-            statusEl.className = "green";
+    let warning = "✔ Within Limit";
+    let statusClass = "green";
+
+    for (let period in goals) {
+        let goalValue = goals[period];
+        if (goalValue > 0 && totalExpense > goalValue) {
+            warning = "❌ Over Limit!";
+            statusClass = "red";
+        } else if (goalValue > 0 && totalExpense > goalValue * 0.6) {
+            warning = "⚠ Warning: 60%+ Spent!";
+            statusClass = "yellow";
         }
     }
+
+    statusEl.innerText = warning;
+    statusEl.className = statusClass;
 }
 
-// Function to render expenses in a list
+// Function to Render Expenses in a List
 function renderExpenses() {
     const list = document.getElementById("expense-list");
     list.innerHTML = "";
