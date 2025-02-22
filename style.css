@@ -2,13 +2,13 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     background-color: #191970; /* Midnight Blue */
-    color: #ffffff; /* White text for contrast */
+    color: #E0E0E0; /* Light Gray */
     line-height: 1.6;
 }
 
 h1, h2 {
     text-align: center;
-    color: #ffa500; /* Orange for headings to stand out */
+    color: #FFD700; /* Gold */
     margin: 20px 0;
 }
 
@@ -26,7 +26,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: #1e1e90; /* Slightly lighter blue for contrast */
+    background-color: #1E1E2E; /* Dark Grayish Blue */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin: 20px auto;
@@ -36,31 +36,31 @@ h2 {
 .input-section label {
     font-weight: bold;
     margin-right: 10px;
-    color: #ffa500; /* Orange for labels */
+    color: #B0B0B0; /* Muted Light Gray */
 }
 
 .input-section input[type="number"],
 .input-section input[type="date"] {
     padding: 8px;
     margin-right: 10px;
-    border: 1px solid #444;
+    border: 1px solid #44475A; /* Soft Dark Blue */
     border-radius: 4px;
     font-size: 1rem;
-    background-color: #2a2a99; /* Darker blue for inputs */
-    color: #ffffff; /* White text */
+    background-color: #282A36; /* Dracula Dark Gray */
+    color: #FFFFFF; /* White */
     transition: border-color 0.3s ease;
 }
 
 .input-section input[type="number"]:focus,
 .input-section input[type="date"]:focus {
-    border-color: #ffa500; /* Orange focus border */
+    border-color: #50FA7B; /* Neon Green */
     outline: none;
 }
 
 .input-section button {
     padding: 8px 16px;
-    background-color: #ffa500; /* Orange for buttons */
-    color: #191970; /* Midnight Blue text */
+    background-color: #008080; /* Teal */
+    color: #FFFFFF; /* White */
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -69,13 +69,13 @@ h2 {
 }
 
 .input-section button:hover {
-    background-color: #ff8c00; /* Darker orange on hover */
+    background-color: #005F5F; /* Darker Teal */
 }
 
 .expenses-list {
     margin: 20px auto;
     max-width: 800px;
-    background-color: #1e1e90; /* Slightly lighter blue for contrast */
+    background-color: #222244; /* Deep Navy Blue */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     padding: 20px;
@@ -88,34 +88,39 @@ table {
 }
 
 th, td {
-    border: 1px solid #444; /* Darker borders for contrast */
+    border: 1px solid #55557F; /* Slate Blue */
     padding: 12px;
     text-align: left;
 }
 
 th {
-    background-color: #ffa500; /* Orange for table headers */
-    color: #191970; /* Midnight Blue text */
+    background-color: #333366; /* Deep Blue */
+    color: #F0E68C; /* Khaki */
     font-weight: bold;
 }
 
 tr:nth-child(even) {
-    background-color: #2a2a99; /* Alternate row color */
+    background-color: #29294D; /* Muted Navy */
+}
+
+tr:nth-child(odd) {
+    background-color: #1F1F3D; /* Darker Navy */
 }
 
 tr:hover {
-    background-color: #3a3aa9; /* Hover effect for rows */
+    background-color: #3D3D6B; /* Soft Blue */
 }
 
 tfoot td {
     font-weight: bold;
-    background-color: #1e1e90; /* Matching the input section */
+    background-color: #1E1E2E; /* Dark Grayish Blue */
+    color: #FFA500; /* Orange */
 }
 
 .delete-btn {
     padding: 8px 16px;
-    background-color: #ff4500; /* Red-Orange for delete button */
-    color: white;
+    background-color: #FF7F50; /* Coral */
+    color: #FFFFFF; /* White */
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -124,5 +129,5 @@ tfoot td {
 }
 
 .delete-btn:hover {
-    background-color: #e63900; /* Darker red-orange on hover */
+    background-color: #FF4500; /* Darker Coral */
 }
