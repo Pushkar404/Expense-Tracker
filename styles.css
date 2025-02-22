@@ -1,7 +1,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    background: #f0f2f5;
+    background: #5d93e4;
     margin: 0;
     padding: 20px;
 }
@@ -10,13 +10,13 @@ body {
     max-width: 420px;
     margin: 50px auto;
     padding: 25px;
-    background: #fff;
+    background: #f2f2f2;
     border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
-    color: #2c3e50;
+    color: #47627d;
     font-size: 22px;
     margin-bottom: 15px;
 }
