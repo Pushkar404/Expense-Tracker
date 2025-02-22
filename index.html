@@ -11,7 +11,7 @@
     <div class="container">
         <h2>💰 Expense Tracker</h2>
 
-        <!-- Independent Spending Goal Section -->
+        <!-- Spending Goal Section -->
         <h3>Set Spending Goal</h3>
         <input type="number" id="goal-amount" placeholder="Enter goal amount">
         <select id="goal-period">
@@ -26,7 +26,7 @@
         <h3>Goals & Status:</h3>
         <ul id="goal-list"></ul>
 
-        <!-- Expense Entry Form -->
+        <!-- Balance & Expense Form -->
         <h3>Balance: ₹<span id="balance">0</span></h3>
         <div class="form">
             <input type="text" id="desc" placeholder="Enter description">
@@ -44,16 +44,16 @@
 
         <!-- Chart Selection Tabs -->
         <div class="chart-tabs">
-            <button onclick="showChart('Daily')">📈 Daily</button>
-            <button onclick="showChart('Weekly')">📊 Weekly</button>
-            <button onclick="showChart('Monthly')">🥧 Monthly</button>
+            <button onclick="showChart('Daily')">📈 Daily Chart</button>
+            <button onclick="showChart('Weekly')">📊 Weekly Chart</button>
+            <button onclick="showChart('Monthly')">🥧 Monthly Chart</button>
         </div>
 
-        <!-- Chart Display Sections -->
+        <!-- Chart Containers -->
         <div id="chart-container">
-            <canvas id="expenseChartDaily" width="400" height="200"></canvas>
-            <canvas id="expenseChartWeekly" width="400" height="200" style="display: none;"></canvas>
-            <canvas id="expenseChartMonthly" width="400" height="200" style="display: none;"></canvas>
+            <canvas id="expenseChartDaily"></canvas>
+            <canvas id="expenseChartWeekly" style="display: none;"></canvas>
+            <canvas id="expenseChartMonthly" style="display: none;"></canvas>
         </div>
     </div>
     <script src="script.js"></script>
